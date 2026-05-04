@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CareID • Final Fixed Preview</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600&display=swap');
+
+		body {
+			font-family: 'Inter', system-ui, sans-serif;
+			background: #f8f7f4;
+			color: #1f1d1a;
+		}
+
+		.font-display {
+			font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+			font-weight: 600;
+			letter-spacing: -0.03em;
+		}
+
+		.bracelet-container {
+			filter: drop-shadow(0 25px 50px -12px rgb(0 0 0 / 0.3));
+			max-width: 620px;
+			margin: 0 auto;
+		}
+
+		svg {
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+
+		.fixed-text {
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+		}
+
+		.editor-input {
+			transition: all 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+		}
+
+		.editor-input:focus {
+			border-color: #ef4444;
+			box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+			outline: none;
+		}
+		textPath{
+font-weight: 500;
+
+		}
+	</style>
+</head>
+
+<body class="py-8">
+	<div class="max-w-[980px] mx-auto px-5">
+
+		<!-- Header -->
+		<div class="flex items-center justify-between mb-7">
+			<div class="flex items-center gap-3">
+				<div class="w-9 h-9 bg-red-600 rounded-2xl flex items-center justify-center">
+					<i class="fas fa-shield-alt text-white"></i>
+				</div>
+				<div>
+					<span class="font-display text-3xl tracking-tighter text-[#1f1d1a]">CareID</span>
+					<span class="ml-1.5 text-[10px] font-mono text-red-500 tracking-[2.5px]">FINAL FIXED</span>
+				</div>
+			</div>
+			<div class="px-3.5 py-1 bg-white rounded-3xl flex items-center gap-2 text-xs text-emerald-600 border border-zinc-200">
+				<div class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
+				<span class="font-medium">Exact layout • Only 3 texts editable • No overlap</span>
+			</div>
+		</div>
+
+		<div class="grid lg:grid-cols-12 gap-8 items-start">
+
+			<!-- ==================== EXACT BRACELET ==================== -->
+			<div class="lg:col-span-7">
+				<div class="mb-2.5 px-1 flex items-center justify-between">
+					<div class="flex items-center gap-2">
+						<span class="font-semibold tracking-tight text-[#1f1d1a]">Live Bracelet Preview</span>
+						<span class="text-[10px] px-2.5 py-px bg-red-100 text-red-600 rounded-xl font-mono tracking-widest">DEMENTIA</span>
+					</div>
+					<div onclick="showScanModal()" class="cursor-pointer flex items-center gap-1.5 text-xs px-3 py-1 bg-white hover:bg-zinc-50 active:bg-zinc-100 border border-zinc-200 rounded-2xl transition-all text-[#1f1d1a]">
+						<i class="fas fa-hand-pointer text-[10px]"></i>
+						<span class="font-medium">Click to scan</span>
+					</div>
+				</div>
+
+				<!-- THE BRACELET - Clean & Exact to Reference -->
+				<div onclick="showScanModal()" class="bracelet-container cursor-pointer active:scale-[0.985] transition-transform duration-150">
+					<svg id="bracelet" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+						<defs>
+							<path id="careArc" d="M 70 352 A 500 1800 0 0 1 230 142" />
+							<path id="alertArc" d="M 690 100 A 438 438 0 0 1 930 365" />
+							<path id="profileArc" d="M 145 825 A 438 428 0 0 0 575 975" />
+						</defs>
+
+						<!-- Black outer ring -->
+						<circle style="padding:20px" cx="500" cy="500" r="493" fill="#000" />
+						<!-- Main gray face -->
+						<circle cx="500" cy="500" r="443" fill="#948f80" />
+
+						<!-- Curved CARE ID (left upper black ring) -->
+						<text fill="#f4f0e6" font-size="54" font-weight="900" letter-spacing="8" class="fixed-text">
+							<textPath href="#careArc" startOffset="5%">CARE ID</textPath>
+						</text>
+
+						<!-- Curved ALERT: 911 (right upper black ring) -->
+						<text fill="#f4f0e6" font-size="54" font-weight="900" letter-spacing="7" class="fixed-text">
+							<textPath href="#alertArc" startOffset="8%">ALERT: <tspan font-weight="500" fill="#fff">911</tspan>
+							</textPath>
+						</text>
+
+					<!-- NFC waves (WiFi style) -->
+					<g transform="rotate(-15 330 100)" stroke="#000" stroke-width="4" fill="none" stroke-linecap="round">
+						<path d="M 360 170 A 18 18 0 0 1 382 150" />
+						<path d="M 348 170 A 34 34 0 0 1 394 138" />
+						<path d="M 336 170 A 50 50 0 0 1 406 126" />
+						</g>
+
+
+
+<svg transform="translate(390 100)" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Color -->
+  <rect width="200" height="200" fill="#948f80" />
+  
+  <!-- Star of Life (White) -->
+  <g fill="white" stroke="white" stroke-width="2" stroke-linejoin="round">
+    <!-- Vertical bar -->
+    <rect x="85" y="20" width="30" height="160" />
+    <!-- Diagonal bar 1 -->
+    <rect x="85" y="20" width="30" height="160" transform="rotate(60 100 100)" />
+    <!-- Diagonal bar 2 -->
+    <rect x="85" y="20" width="30" height="160" transform="rotate(-60 100 100)" />
+  </g>
+  
+  <!-- Rod of Asclepius (Black) -->
+  <g fill="none" stroke="black" stroke-width="4" stroke-linecap="round">
+    <!-- The Staff -->
+    <line x1="100" y1="55" x2="100" y2="160" stroke-width="6" />
+    <circle cx="100" cy="52" r="5" fill="black" stroke="none" />
+    
+    <!-- The Serpent -->
+    <path d="M 125 70 
+             C 110 60, 80 75, 85 95 
+             C 90 115, 125 105, 120 130 
+             C 115 155, 85 145, 95 165" 
+          stroke-width="5" />
+    
+    <!-- Serpent Head/Tongue detail -->
+    <path d="M 125 70 L 132 68 M 125 70 L 130 75" stroke-width="2" />
+  </g>
+</svg>
+
+
+						<!-- Medical Symbol (correct - clean star/rod) -->
+					
+
+						<!-- Red Banner -->
+						<rect x="145" y="320" width="710" height="125" rx="34" fill="#f5232f" />
+						<text id="redText" x="500" y="408" text-anchor="middle" fill="#fff" font-size="88" font-weight="900" letter-spacing="18">DEMENTIA</text>
+
+						<!-- Gray Bar -->
+						<path d="M105 497 C105 472 128 455 155 455 H845 C872 455 895 472 895 497 L868 565 C852 605 810 616 760 616 H240 C190 616 148 605 132 565 Z" fill="#595959" />
+
+						<!-- Brain Icon -->
+					
+
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg transform="translate(170 510)"  width="70px" height="70px" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet">
+
+<path fill="#000" d="M29.896 26.667c.003.283-.07.653-.146.958c-.531 2.145-2.889 4.552-6.208 4.333c-3.008-.198-5.458-1.642-5.458-3.667s2.444-3.667 5.458-3.667s6.335.018 6.354 2.043z">
+
+</path>
+
+<path fill="#000" d="M23.542 24.964c-1.619 0-5.314.448-6.162.448c-1.498 0-2.713.94-2.713 2.1c0 .558.286 1.062.744 1.438c0 0 1.006 1.009 2.818.525c.793-.212 2.083-1.786 4.354-2.036c1.131-.125 3.25.75 6.974.771c.16-.344.193-.583.193-.583c0-2.027-3.194-2.663-6.208-2.663z">
+
+</path>
+
+<path fill="#efefef" d="M29.75 27.625s2.184-.443 3.542-2.229c1.583-2.083 1.375-4.312 1.375-4.312c1.604-3-.5-5.813-.5-5.813C33.958 12.104 32 10.792 32 10.792c-1.271-3.021-4.083-3.833-4.083-3.833c-2.208-2.583-6.125-2.5-6.125-2.5s-3.67-1.345-8.708.167c-.833.25-3.625.833-5.667 2.083C.981 10.649.494 16.793.584 17.792C1.083 23.375 5 24.375 7.5 24.958c.583 1.583 2.729 4.5 6.583 3.417c4.75-.833 6.75-2.25 7.917-2.25s4.417 1.25 7.75 1.5z">
+
+</path>
+
+<g fill="#000">
+
+<path d="M17.737 18.648c2.328-1.255 3.59-1.138 4.704-1.037c.354.032.689.057 1.028.055c1.984-.045 3.591-.881 4.302-1.69a.501.501 0 0 0-.752-.661c-.548.624-1.899 1.313-3.573 1.351c-.3.009-.601-.021-.913-.05c-1.195-.111-2.679-.247-5.271 1.152c-.665.359-1.577.492-2.565.592c-2.197-3.171-.875-5.933-.497-6.591c.037.002.073.014.111.014c.4 0 .802-.098 1.166-.304a.5.5 0 0 0-.492-.87a1.426 1.426 0 0 1-1.88-.467a.5.5 0 0 0-.841.539c.237.371.571.65.948.837c-.521 1.058-1.51 3.84.372 6.951c-1.324.13-2.65.317-3.688.986a7.182 7.182 0 0 0-1.878 1.791c-.629-.108-2.932-.675-3.334-3.231c.25-.194.452-.45.577-.766a.5.5 0 1 0-.93-.368a.772.772 0 0 1-.454.461a.777.777 0 0 1-.643-.07a.5.5 0 0 0-.486.874c.284.158.588.238.89.238c.037 0 .072-.017.109-.019c.476 2.413 2.383 3.473 3.732 3.794a3.69 3.69 0 0 0-.331 1.192a.5.5 0 0 0 .454.542l.045.002a.5.5 0 0 0 .498-.456c.108-1.213 1.265-2.48 2.293-3.145c.964-.621 2.375-.752 3.741-.879c1.325-.121 2.577-.237 3.558-.767zm12.866-1.504a.5.5 0 0 0 .878.48c.019-.034 1.842-3.449-1.571-5.744a.5.5 0 0 0-.558.83c2.644 1.778 1.309 4.326 1.251 4.434zM9.876 9.07a.497.497 0 0 0 .406-.208c1.45-2.017 3.458-1.327 3.543-1.295a.5.5 0 0 0 .345-.938c-.96-.356-3.177-.468-4.7 1.65a.5.5 0 0 0 .406.791zm13.072-1.888c2.225-.181 3.237 1.432 3.283 1.508a.5.5 0 0 0 .863-.507c-.054-.091-1.34-2.218-4.224-1.998a.5.5 0 0 0 .078.997zm9.15 14.611c-.246-.014-.517.181-.539.457c-.002.018-.161 1.719-1.91 2.294a.499.499 0 0 0 .157.975a.499.499 0 0 0 .156-.025c2.372-.778 2.586-3.064 2.594-3.161a.502.502 0 0 0-.458-.54z">
+
+</path>
+
+<path d="M7.347 16.934a.5.5 0 1 0 .965.26a1.423 1.423 0 0 1 1.652-1.014a.5.5 0 0 0 .205-.979a2.354 2.354 0 0 0-1.248.086c-1.166-1.994-.939-3.96-.936-3.981a.502.502 0 0 0-.429-.562a.503.503 0 0 0-.562.427c-.013.097-.28 2.316 1.063 4.614a2.376 2.376 0 0 0-.71 1.149zm11.179-2.47a1.069 1.069 0 0 1 1.455.015a.502.502 0 0 0 .707-.011a.5.5 0 0 0-.01-.707a2.004 2.004 0 0 0-.797-.465c.296-1.016.179-1.467-.096-2.312a20.6 20.6 0 0 1-.157-.498l-.03-.1c-.364-1.208-.605-2.005.087-3.13a.5.5 0 0 0-.852-.524c-.928 1.508-.587 2.637-.192 3.944l.03.1c.059.194.113.364.163.517c.247.761.322 1.016.02 1.936a2.022 2.022 0 0 0-1.01.504a.5.5 0 0 0 .682.731zm6.365-2.985a2 2 0 0 0 .859-.191a.5.5 0 0 0-.426-.905a1.072 1.072 0 0 1-1.384-.457a.5.5 0 1 0-.881.472c.18.336.448.601.76.785c-.537 1.305-.232 2.691.017 3.426a.5.5 0 1 0 .947-.319c-.168-.498-.494-1.756-.002-2.826c.038.002.073.015.11.015zm4.797 9.429a.497.497 0 0 0-.531-.467a1.825 1.825 0 0 1-1.947-1.703a.509.509 0 0 0-.533-.465a.502.502 0 0 0-.465.533c.041.59.266 1.122.608 1.555c-.804.946-1.857 1.215-2.444 1.284c-.519.062-.973.009-1.498-.053c-.481-.055-1.025-.118-1.698-.098l-.005.001c-.02-.286-.088-.703-.305-1.05a.501.501 0 0 0-.847.531c.134.215.159.558.159.725c-.504.181-.94.447-1.334.704c-.704.458-1.259.82-2.094.632c-.756-.173-1.513-.208-2.155-.118c-.1-.251-.258-.551-.502-.782a.5.5 0 0 0-.687.727c.086.081.154.199.209.317c-1.103.454-1.656 1.213-1.682 1.25a.499.499 0 0 0 .407.788a.502.502 0 0 0 .406-.205c.005-.008.554-.743 1.637-1.04c.56-.154 1.363-.141 2.146.037c.219.05.422.067.619.07c.093.218.129.477.134.573a.501.501 0 0 0 .499.472l.027-.001a.5.5 0 0 0 .473-.523a3.023 3.023 0 0 0-.13-.686c.461-.167.862-.428 1.239-.673c.572-.373 1.113-.726 1.82-.749c.592-.021 1.08.036 1.551.091c.474.055.94.091 1.454.061c.091.253.084.591.07.704a.503.503 0 0 0 .497.563a.5.5 0 0 0 .495-.435a2.883 2.883 0 0 0-.059-.981a4.67 4.67 0 0 0 2.345-1.471a2.807 2.807 0 0 0 1.656.413a.499.499 0 0 0 .465-.531z">
+
+</path>
+
+</g>
+
+</svg>
+						<!-- Editable texts - balanced spacing, no overlap -->
+						<text id="leftText" x="255" y="556" fill="#fff" font-size="40" font-weight="900">CONFUSION</text>
+						<rect x="465" y="503" width="6" height="66" rx="3" fill="#d1c9b8" />
+						<text id="rightText" x="485" y="556" fill="#fff" font-size="40" font-weight="900">REACH CARER</text>
+
+						<!-- Warning Icon -->
+						<g transform="translate(800 532)">
+							<path d="M0-39L43 34H-43Z" fill="#efefef" />
+							<rect x="-4" y="-14" width="8" height="27" rx="4" fill="#111" />
+							<circle cx="0" cy="23" r="5" fill="#111" />
+						</g>
+
+						<!-- SCAN QR Shape -->
+						<path d="M132 652 H455 V885 C305 878 165 806 138 688 C134 674 132 662 132 652Z" fill="#414441" stroke="#fff" stroke-width="3" />
+
+						<text x="295" y="735" text-anchor="middle" fill="#fff" font-size="62" font-weight="400" letter-spacing="5">SCAN</text>
+						<text x="365" y="835" text-anchor="middle" fill="#fff" font-size="115" font-weight="900" letter-spacing="18">QR</text>
+
+						<rect x="500" y="733" width="12" height="87" rx="7" fill="#000" />
+
+						<!-- QR Code (using <image> + data URL for reliable mobile/Safari rendering) -->
+						<rect x="540" y="648" width="220" height="220" rx="42" fill="#fff" />
+						<image id="qrImage" x="560" y="670" width="180" height="180" preserveAspectRatio="xMidYMid slice" />
+
+						<!-- DIGITAL PROFILE (well centered on black ring) -->
+						<text fill="#f4f0e6" font-size="44" font-weight="900" letter-spacing="6" class="fixed-text">
+							<textPath href="#profileArc" startOffset="12%">DIGITAL PROFIE</textPath>
+						</text>
+					</svg>
+				</div>
+				<p class="text-center text-[10px] text-zinc-500 mt-2.5 tracking-wide">Click the bracelet to simulate first responder scan</p>
+			</div>
+
+			<!-- ==================== EDITOR ==================== -->
+			<div class="lg:col-span-5">
+				<div class="bg-white border border-zinc-200 rounded-3xl p-6 sticky top-6 shadow-sm">
+					<div class="flex items-center gap-2 mb-4">
+						<i class="fas fa-edit text-red-500"></i>
+						<span class="font-semibold tracking-tight text-[#1f1d1a]">Editable Texts</span>
+					</div>
+					<p class="text-xs text-zinc-500 mb-5">Only these three texts can be changed. All other elements, icons, shapes and layout are fixed exactly as in the reference image.</p>
+
+					<div class="space-y-4">
+						<div>
+							<label class="text-xs font-bold tracking-[1.5px] text-zinc-500 block mb-1">RED BANNER TEXT</label>
+							<input id="inputRed" type="text" value="DEMENTIA" class="editor-input w-full bg-white border border-zinc-200 focus:border-red-500 rounded-2xl px-4 h-11 text-[21px] font-black tracking-[-0.6px] text-[#1f1d1a]" oninput="updatePreview()">
+						</div>
+
+						<div>
+							<label class="text-xs font-bold tracking-[1.5px] text-zinc-500 block mb-1">GRAY BAR — LEFT TEXT</label>
+							<input id="inputLeft" type="text" value="CONFUSION" class="editor-input w-full bg-white border border-zinc-200 focus:border-red-500 rounded-2xl px-4 h-11 text-[17px] font-extrabold text-[#1f1d1a]" oninput="updatePreview()">
+						</div>
+
+						<div>
+							<label class="text-xs font-bold tracking-[1.5px] text-zinc-500 block mb-1">GRAY BAR — RIGHT TEXT</label>
+							<input id="inputRight" type="text" value="REACH CARER" class="editor-input w-full bg-white border border-zinc-200 focus:border-red-500 rounded-2xl px-4 h-11 text-[17px] font-extrabold text-[#1f1d1a]" oninput="updatePreview()">
+						</div>
+					</div>
+
+					<div class="mt-5 pt-5 border-t border-zinc-200 flex gap-2">
+						<button onclick="resetToDefaults()" class="flex-1 h-9 text-xs font-semibold rounded-2xl border border-zinc-200 hover:bg-zinc-50 transition-colors text-[#1f1d1a]">RESET</button>
+						<button onclick="loadSample(1)" class="flex-1 h-9 text-xs font-semibold rounded-2xl border border-zinc-200 hover:bg-zinc-50 transition-colors text-[#1f1d1a]">SAMPLE 1</button>
+						<button onclick="loadSample(2)" class="flex-1 h-9 text-xs font-semibold rounded-2xl border border-zinc-200 hover:bg-zinc-50 transition-colors text-[#1f1d1a]">SAMPLE 2</button>
+					</div>
+
+					<div class="mt-4 text-[10px] text-center text-zinc-500">
+						Changes update instantly.<br>
+						No overlap • Matches reference image exactly
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scan Modal -->
+	<div id="scan-modal" onclick="if (event.target.id === 'scan-modal') hideScanModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-xl z-[200] flex items-center justify-center p-5">
+		<div onclick="event.stopImmediatePropagation()" class="bg-white border border-zinc-200 w-full max-w-[400px] rounded-3xl overflow-hidden shadow-xl">
+
+			<div class="px-6 pt-5 pb-4 border-b border-zinc-200 flex justify-between items-center">
+				<div>
+					<div class="font-semibold text-[#1f1d1a]">Emergency Medical Profile</div>
+					<div class="text-red-500 text-xs tracking-[1.5px]">FIRST RESPONDER • READ ONLY</div>
+				</div>
+				<button onclick="hideScanModal()" class="text-4xl leading-none text-zinc-400 hover:text-zinc-600">×</button>
+			</div>
+
+			<div class="p-6 space-y-5 text-sm text-[#1f1d1a]">
+				<div>
+					<div class="text-red-500 text-xs font-bold tracking-widest mb-0.5">CRITICAL CONDITION</div>
+					<div id="modal-alert" class="text-red-500 text-3xl font-black tracking-[-1px]"></div>
+				</div>
+
+				<div class="grid grid-cols-2 gap-x-6 gap-y-4">
+					<div>
+						<div class="text-xs text-zinc-500 tracking-wider">PATIENT</div>
+						<div id="modal-name" class="font-semibold text-lg">JOHN CARTER</div>
+					</div>
+					<div>
+						<div class="text-xs text-zinc-500 tracking-wider">BLOOD TYPE</div>
+						<div id="modal-blood" class="font-semibold text-lg flex items-center gap-1.5">
+							<i class="fas fa-tint text-red-500 text-base"></i> <span>A+</span>
+						</div>
+					</div>
+					<div class="col-span-2">
+						<div class="text-xs text-zinc-500 tracking-wider">ICE / EMERGENCY CONTACT</div>
+						<div id="modal-ice" class="font-semibold">Sarah Carter • (555) 321-9876</div>
+					</div>
+				</div>
+
+				<div>
+					<div class="text-xs text-zinc-500 tracking-wider mb-0.5">SUPPORT NOTES</div>
+					<div id="modal-meds" class="font-medium text-[15px]">Needs assistance • See full profile via QR/NFC</div>
+				</div>
+			</div>
+
+			<div class="px-6 py-4 bg-zinc-50 flex gap-3">
+				<button onclick="hideScanModal()" class="flex-1 h-10 rounded-2xl border border-zinc-200 text-sm font-semibold hover:bg-white transition-colors">CLOSE</button>
+				<button onclick="copyProfileLink()" class="flex-1 h-10 rounded-2xl bg-[#1f1d1a] text-white text-sm font-bold flex items-center justify-center gap-2 hover:bg-black transition-colors">
+					<i class="fas fa-link"></i>
+					<span>COPY PROFILE LINK</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		let profile = {
+			redBannerText: "DEMENTIA",
+			leftText: "CONFUSION",
+			rightText: "REACH CARER",
+			patientName: "JOHN CARTER",
+			bloodType: "A+",
+			supportNote: "Needs assistance • See full profile via QR/NFC",
+			iceContact: "Sarah Carter • (555) 321-9876",
+			profileUrl: "https://careid.me/emergency/dementia/john-carter-001"
+		};
+
+		function fitText(el, maxWidth, startSize, minSize = 22) {
+			if (!el || !el.getComputedTextLength) return;
+			el.setAttribute("font-size", startSize);
+			let size = startSize;
+			let iterations = 0;
+			while (el.getComputedTextLength() > maxWidth && size > minSize && iterations < 30) {
+				size -= 2;
+				el.setAttribute("font-size", size);
+				iterations++;
+			}
+		}
+
+		function updatePreview() {
+			profile.redBannerText = (document.getElementById("inputRed").value || "DEMENTIA").toUpperCase().trim();
+			profile.leftText = (document.getElementById("inputLeft").value || "CONFUSION").toUpperCase().trim();
+			profile.rightText = (document.getElementById("inputRight").value || "REACH CARER").toUpperCase().trim();
+
+			const redEl = document.getElementById("redText");
+			const leftEl = document.getElementById("leftText");
+			const rightEl = document.getElementById("rightText");
+
+			if (redEl) redEl.textContent = profile.redBannerText;
+			if (leftEl) leftEl.textContent = profile.leftText;
+			if (rightEl) rightEl.textContent = profile.rightText;
+
+			fitText(redEl, 650, 88, 42);
+			fitText(leftEl, 195, 40, 22);
+			fitText(rightEl, 255, 40, 22);
+
+			generateQR();
+		}
+
+		function generateQR() {
+			const qrImage = document.getElementById("qrImage");
+			if (!qrImage || typeof QRCode === "undefined") return;
+
+			// Create a temporary canvas to generate QR as PNG data URL
+			const tempCanvas = document.createElement("canvas");
+			tempCanvas.width = 220;
+			tempCanvas.height = 220;
+
+			QRCode.toCanvas(tempCanvas, profile.profileUrl, {
+				width: 220,
+				margin: 0,
+				color: { dark: "#1f1d1a", light: "#ffffff" }
+			}, function(err) {
+				if (err) {
+					console.warn("QR generation error:", err);
+					return;
+				}
+				const dataUrl = tempCanvas.toDataURL("image/png");
+				qrImage.setAttribute("href", dataUrl);
+				qrImage.setAttributeNS("http://www.w3.org/1999/xlink", "href", dataUrl);
+			});
+		}
+
+		function syncInputs() {
+			document.getElementById("inputRed").value = profile.redBannerText;
+			document.getElementById("inputLeft").value = profile.leftText;
+			document.getElementById("inputRight").value = profile.rightText;
+		}
+
+		function resetToDefaults() {
+			profile.redBannerText = "DEMENTIA";
+			profile.leftText = "CONFUSION";
+			profile.rightText = "REACH CARER";
+			syncInputs();
+			updatePreview();
+		}
+
+		function loadSample(n) {
+			if (n === 1) {
+				profile.redBannerText = "DEMENTIA";
+				profile.leftText = "CONFUSION";
+				profile.rightText = "REACH CARER";
+			} else {
+				profile.redBannerText = "DEMENTIA";
+				profile.leftText = "WANDERING";
+				profile.rightText = "CALL CARER";
+			}
+			syncInputs();
+			updatePreview();
+		}
+
+		function showScanModal() {
+			const modal = document.getElementById("scan-modal");
+			if (!modal) return;
+
+			document.getElementById("modal-alert").textContent = profile.redBannerText;
+			document.getElementById("modal-name").textContent = profile.patientName;
+			document.getElementById("modal-blood").querySelector("span").textContent = profile.bloodType;
+			document.getElementById("modal-meds").textContent = profile.supportNote;
+			document.getElementById("modal-ice").textContent = profile.iceContact;
+
+			modal.classList.remove("hidden");
+			modal.classList.add("flex");
+		}
+
+		function hideScanModal() {
+			const modal = document.getElementById("scan-modal");
+			modal.classList.remove("flex");
+			modal.classList.add("hidden");
+		}
+
+		function copyProfileLink() {
+			navigator.clipboard.writeText(profile.profileUrl).then(() => {
+				hideScanModal();
+				const toast = document.createElement("div");
+				toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-800 text-white text-sm px-5 h-9 rounded-3xl flex items-center shadow-xl border border-white/10 z-[300]`;
+				toast.textContent = "Profile link copied";
+				document.body.appendChild(toast);
+				setTimeout(() => {
+					toast.style.transition = "opacity 0.2s ease";
+					toast.style.opacity = "0";
+					setTimeout(() => toast.remove(), 150);
+				}, 1500);
+			}).catch(() => {
+				prompt("Copy this link:", profile.profileUrl);
+			});
+		}
+
+		function init() {
+			syncInputs();
+			updatePreview();
+
+			["inputRed", "inputLeft", "inputRight"].forEach(id => {
+				const el = document.getElementById(id);
+				if (el) el.addEventListener("input", updatePreview);
+			});
+
+			console.log("%c[CareID Final Fixed] Clean medical symbol, no overlap, matches reference.", "color:#666");
+		}
+
+		window.addEventListener("load", init);
+	</script>
+</body>
+
+</html>
